@@ -1,0 +1,311 @@
+
+package travel.management.system;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Dashboard extends JFrame implements ActionListener{
+    JButton addPersonalDeatils, viewPersonalDeatils, updatePersonalDeatils,  checkpackages,bookpackage, viewpackage,viewhotels;
+    JButton  destinations,bookhotel,viewBookedHotel, payments,calculators,notepad,about,deletePersonalDeatils;
+    String username;
+    Dashboard(String username){
+        this.username = username;
+        // it is the main frame where all class will linked
+        //setBounds(0,0,1366,768);
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // in case we don't know our screen length and width we use this method
+        setLayout(null);
+        //this.setResizable(false);
+        
+        
+          
+        // now creating a panel 
+        JPanel p1 = new JPanel();
+        p1.setLayout(null);
+        p1.setBackground(new Color(0,0,102));  // if we want RGB color
+        p1.setBounds(0,0,2000,65);
+        add(p1);
+        
+        // placing a image on frame with label
+        
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/dashboard.png"));
+        Image i2 = i1.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT);
+        ImageIcon i3 = new ImageIcon(i2);
+        JLabel icon = new JLabel(i3);
+        icon.setBounds(5, 0, 70, 70);
+        p1.add(icon);
+        
+        // now we craete a heading label
+        
+        JLabel heading = new JLabel("Dashboard");
+        heading.setBounds(80,10,300,40);
+        heading.setForeground(Color.WHITE);
+        heading.setFont(new Font("Tahoma", Font.BOLD, 30));
+        p1.add(heading);
+        
+        
+        // now we create a another panel in which all button
+        JPanel p2 = new JPanel();
+        p2.setLayout(null);
+        p2.setBackground(new Color(0,0,102));  // if we want RGB color
+        p2.setBounds(0,65,300,900);
+        add(p2);
+        
+        // Now we add button in 2 panel
+        
+        addPersonalDeatils = new JButton("Add Personal Details");
+        addPersonalDeatils.setBounds(0,0,300,50);
+        addPersonalDeatils.setBackground(new Color(0, 0, 102));
+        addPersonalDeatils.setForeground(Color.WHITE);
+        addPersonalDeatils.setFont(new Font("Tahoma", Font.PLAIN,20));
+        addPersonalDeatils.setMargin(new Insets(0,0,0,60));  // set our own margin
+        addPersonalDeatils.addActionListener(this);
+        p2.add(addPersonalDeatils);
+        
+        // update personal details button
+        updatePersonalDeatils = new JButton("Update Personal Details");
+        updatePersonalDeatils.setBounds(0,40,300,50); // 30 gap from above button
+        updatePersonalDeatils.setBackground(new Color(0, 0, 102));
+        updatePersonalDeatils.setForeground(Color.WHITE);
+        updatePersonalDeatils.setFont(new Font("Tahoma", Font.PLAIN,20));
+        updatePersonalDeatils.setMargin(new Insets(0,0,0,30));  // set our own margin
+        updatePersonalDeatils.addActionListener(this);
+        p2.add(updatePersonalDeatils);
+        
+        // view personal details button
+        viewPersonalDeatils = new JButton("View Details");
+        viewPersonalDeatils.setBounds(0,75,300,50); // 30 gap from above button
+        viewPersonalDeatils.setBackground(new Color(0, 0, 102));
+        viewPersonalDeatils.setForeground(Color.WHITE);
+        viewPersonalDeatils.setFont(new Font("Tahoma", Font.PLAIN,20));
+        viewPersonalDeatils.setMargin(new Insets(0,0,0,130));  // set our own margin
+        viewPersonalDeatils.addActionListener(this);
+        p2.add(viewPersonalDeatils);
+        
+        // delete personal details button
+       deletePersonalDeatils = new JButton("Delete Personal Details");
+       deletePersonalDeatils.setBounds(0,113,300,50); // 30 gap from above button
+        deletePersonalDeatils.setBackground(new Color(0, 0, 102));
+        deletePersonalDeatils.setForeground(Color.WHITE);
+        deletePersonalDeatils.setFont(new Font("Tahoma", Font.PLAIN,20));
+        deletePersonalDeatils.setMargin(new Insets(0,0,0,40));  // set our own margin
+        deletePersonalDeatils.addActionListener(this);
+        p2.add(deletePersonalDeatils);
+        
+         // Check Packages button
+       checkpackages = new JButton("Check Packages");
+       checkpackages.setBounds(0,150,300,50); // 30 gap from above button
+        checkpackages.setBackground(new Color(0, 0, 102));
+        checkpackages.setForeground(Color.WHITE);
+        checkpackages.setFont(new Font("Tahoma", Font.PLAIN,20));
+       checkpackages.setMargin(new Insets(0,0,0,110));  // set our own margin
+       checkpackages.addActionListener(this);
+        p2.add(checkpackages);
+        
+          // Book Packages button
+       bookpackage = new JButton("Book Package");
+       bookpackage.setBounds(0,190,300,50); // 30 gap from above button
+        bookpackage.setBackground(new Color(0, 0, 102));
+        bookpackage.setForeground(Color.WHITE);
+        bookpackage.setFont(new Font("Tahoma", Font.PLAIN,20));
+       bookpackage.setMargin(new Insets(0,0,0,110));  // set our own margin
+       bookpackage.addActionListener(this);
+        p2.add(bookpackage);
+        
+        // view Packages button
+        
+       viewpackage = new JButton("View Package");
+       viewpackage.setBounds(0,240,300,50); // 30 gap from above button
+       viewpackage.setBackground(new Color(0, 0, 102));
+       viewpackage.setForeground(Color.WHITE);
+       viewpackage.setFont(new Font("Tahoma", Font.PLAIN,20));
+       viewpackage.setMargin(new Insets(0,0,0,110));  // set our own margin
+       viewpackage.addActionListener(this);
+        p2.add(viewpackage);
+        
+           // view hotels button
+        
+       viewhotels = new JButton("View Hotels");
+       viewhotels.setBounds(0,290,300,50); // 30 gap from above button
+       viewhotels.setBackground(new Color(0, 0, 102));
+       viewhotels.setForeground(Color.WHITE);
+      viewhotels.setFont(new Font("Tahoma", Font.PLAIN,20));
+       viewhotels.setMargin(new Insets(0,0,0,130));  // set our own margin
+       viewhotels.addActionListener(this);
+        p2.add(viewhotels);
+        
+          // Book hotel button
+
+       bookhotel = new JButton("Book Hotel");
+       bookhotel.setBounds(0,340,300,50); // 30 gap from above button
+       bookhotel.setBackground(new Color(0, 0, 102));
+       bookhotel.setForeground(Color.WHITE);
+       bookhotel.setFont(new Font("Tahoma", Font.PLAIN,20));
+       bookhotel.setMargin(new Insets(0,0,0,140));  // set our own margin
+       bookhotel.addActionListener(this);
+        p2.add(bookhotel);
+        
+           //  View Booked hotel button
+
+       viewBookedHotel = new JButton("View Booked Hotel");
+       viewBookedHotel.setBounds(0,390,300,50); // 30 gap from above button
+       viewBookedHotel.setBackground(new Color(0, 0, 102));
+       viewBookedHotel.setForeground(Color.WHITE);
+       viewBookedHotel.setFont(new Font("Tahoma", Font.PLAIN,20));
+       viewBookedHotel.setMargin(new Insets(0,0,0,70));  // set our own margin
+       viewBookedHotel.addActionListener(this);
+        p2.add(viewBookedHotel);
+        
+         // Destinations button
+
+       destinations = new JButton("Destinations");
+       destinations.setBounds(0,440,300,50); // 30 gap from above button
+       destinations.setBackground(new Color(0, 0, 102));
+       destinations.setForeground(Color.WHITE);
+       destinations.setFont(new Font("Tahoma", Font.PLAIN,20));
+       destinations.setMargin(new Insets(0,0,0,125));  // set our own margin
+       destinations.addActionListener(this);
+        p2.add(destinations);
+        
+        // payments button
+
+       payments = new JButton("Payments");
+       payments.setBounds(0,490,300,50); // 30 gap from above button
+       payments.setBackground(new Color(0, 0, 102));
+       payments.setForeground(Color.WHITE);
+      payments.setFont(new Font("Tahoma", Font.PLAIN,20));
+       payments.setMargin(new Insets(0,0,0,155));  // set our own margin
+       payments.addActionListener(this);
+       p2.add(payments);
+        
+        // calculator button 
+        // with the help of this button we oppen our system calculater
+
+       calculators = new JButton("Calculator");
+       calculators.setBounds(0,540,300,50); // 30 gap from above button
+       calculators.setBackground(new Color(0, 0, 102));
+       calculators.setForeground(Color.WHITE);
+       calculators.setFont(new Font("Tahoma", Font.PLAIN,20));
+       calculators.setMargin(new Insets(0,0,0,145));  // set our own margin
+       calculators.addActionListener(this);
+        p2.add(calculators);
+        
+        // NotePad button
+        
+       notepad = new JButton("Notepad");
+       notepad.setBounds(0,590,300,50); // 30 gap from above button
+       notepad.setBackground(new Color(0, 0, 102));
+       notepad.setForeground(Color.WHITE);
+       notepad.setFont(new Font("Tahoma", Font.PLAIN,20));
+       notepad.setMargin(new Insets(0,0,0,155));  // set our own margin
+       notepad.addActionListener(this);
+        p2.add(notepad);
+        
+           // about button
+        
+       about  = new JButton("About ");
+       about.setBounds(0,640,300,50); // 30 gap from above button
+       about.setBackground(new Color(0, 0, 102));
+       about.setForeground(Color.WHITE);
+       about.setFont(new Font("Tahoma", Font.PLAIN,20));
+       about .setMargin(new Insets(0,0,0,175));  // set our own margin
+       about.addActionListener(this);
+        p2.add(about );
+        
+        
+        // now we add image on right side of pannel and text on it
+        
+        ImageIcon i4 = new ImageIcon(ClassLoader.getSystemResource("icons/home.jpg"));
+        Image i5 = i4.getImage().getScaledInstance(1650, 1000, Image.SCALE_DEFAULT);
+        ImageIcon i6 = new ImageIcon(i5);
+        JLabel image = new JLabel(i6);
+        image.setBounds(0,0,1600,1000);
+        add(image);
+        
+        JLabel text = new JLabel("Travel and Tourism Management System");
+        text.setBounds(400, 70, 1200, 70);
+        text.setForeground(Color.WHITE);
+        text.setFont(new Font("Raleway",Font.PLAIN,50));
+        image.add(text);
+        
+        setVisible(true);
+                 
+    }
+    public void actionPerformed(ActionEvent ae){
+        if(ae.getSource()== addPersonalDeatils){
+            new AddCustomer(username);
+        }
+        else if(ae.getSource()==viewPersonalDeatils)
+        {
+            new ViewCustomer(username);
+        }
+        else if(ae.getSource()==updatePersonalDeatils)
+        {
+            new UpdateCustomer(username);
+        }
+        else if(ae.getSource()==checkpackages)
+        {
+            new CheckPackage();
+        }
+        else if(ae.getSource()==bookpackage)
+        {
+            new BookPackage(username);
+        }
+        else if(ae.getSource()==viewpackage)
+        {
+            new ViewPackage(username);
+        }
+        else if(ae.getSource()== viewhotels)
+        {
+            new CheckHotels();
+        }
+        else if(ae.getSource()== destinations)
+        {
+            new Destinations();
+        }
+        else if(ae.getSource()== bookhotel)
+        {
+            new BookHotel(username);
+        }
+        else if(ae.getSource()== viewBookedHotel)
+        {
+            new ViewBookedHotel(username);
+        }
+        else if(ae.getSource()== payments)
+        {
+            new Payment();
+        }
+        // now we open system external calculater
+        else if(ae.getSource()== calculators){
+            try{
+                // oppen cal with Runtime
+                Runtime.getRuntime().exec("calc.exe");
+                
+            }catch(Exception e){
+                e.printStackTrace();
+            } 
+        }
+        else if(ae.getSource()== notepad){
+            try{
+                // oppen cal with Runtime
+                Runtime.getRuntime().exec("notepad.exe");
+                
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        else if(ae.getSource()==about){
+            new About();
+        }
+        else if(ae.getSource()==deletePersonalDeatils){
+            new DeleteDetails(username);
+        }
+    }
+    
+    public static void main(String[]args){
+        
+        new Dashboard("");   
+        
+    }
+    
+}
