@@ -1,0 +1,21 @@
+
+package travel.management.system;
+import java.sql.*;
+
+public class Conn {
+    
+    Connection c;
+    Statement s;
+  
+    // constructor of conn Class
+    Conn(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver"); // intialize the Driver
+            c = DriverManager.getConnection("jdbc:mysql:///travelmanagementsystem", "root", "Shahroz123#");
+            s = c.createStatement();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+    }
+}
