@@ -1,0 +1,183 @@
+
+package travel.management.system;
+import javax.swing.*;
+import java.awt.*; // for color class
+import java.awt.event.*;
+
+public class Signup extends JFrame implements ActionListener{ 
+    JButton create , back;  // globally define craete and back button
+    JTextField   tfname, tfusername, tfanswer;
+    JPasswordField tfpassword;
+    Choice security;
+    
+    Signup(){
+        setBounds(350,200,900,360);  // we can create a frame using setbounds instead of setloc and setSize
+        getContentPane().setBackground(Color.WHITE);  // change whole frame color
+        setLayout(null);
+        
+        // creating a panel
+        
+        JPanel p1 = new JPanel();
+        p1.setBackground(new Color(131, 193, 233));
+        p1.setBounds(0, 0, 500, 400);
+        p1.setLayout(null);
+        add(p1);
+        
+        // craeting label for username
+         
+        JLabel lblusername = new JLabel("Username");
+        lblusername.setBounds(50,20,125,25);
+        lblusername.setFont(new Font("Tahoma", Font.BOLD, 20));
+        p1.add(lblusername);
+        
+        // text field for username
+        
+        tfusername = new JTextField();
+        tfusername.setBounds(190, 20, 180, 25);
+        tfusername.setBorder(BorderFactory.createEmptyBorder());  // remove border of text field
+        p1.add(tfusername);
+        
+        // craeting label for name
+         
+        JLabel lblname = new JLabel("Name");
+        lblname.setBounds(50,60,125,25);
+        lblname.setFont(new Font("Tahoma", Font.BOLD, 20));
+        p1.add(lblname);
+        
+        // text field for name
+        
+        tfname = new JTextField();
+        tfname.setBounds(190, 60, 180, 25);
+       tfname.setBorder(BorderFactory.createEmptyBorder());  // remove border of text field
+        p1.add(tfname);
+        
+        // craeting label for password
+         
+        JLabel lblpassword = new JLabel("Password");
+        lblpassword.setBounds(50,100,125,25);
+        lblpassword.setFont(new Font("Tahoma", Font.BOLD, 20));
+        p1.add(lblpassword);
+        
+        // text field for password
+        
+        tfpassword = new JPasswordField();
+        tfpassword .setBounds(190, 100, 180, 25);
+      tfpassword .setBorder(BorderFactory.createEmptyBorder());  // remove border of text field
+        p1.add(tfpassword );
+        
+             // craeting label for Security
+         
+        JLabel lblsecurity = new JLabel("Security Question");
+        lblsecurity.setBounds(50,140,125,25);
+       lblsecurity.setFont(new Font("Tahoma", Font.BOLD, 20));
+        p1.add(lblsecurity);
+        
+        // text field for Security
+        
+        JTextField tfsecurity = new JTextField();
+        tfsecurity .setBounds(190, 100, 180, 25);
+      tfsecurity .setBorder(BorderFactory.createEmptyBorder());  // remove border of text field
+        p1.add(tfsecurity);
+        
+        // use choice class for drop down for different question 
+        
+        security = new Choice();
+        security.add("Your Last Name");
+        security.add("Your Partner Name");
+        security.add("Your Lucky Number"); 
+        security.add("Your childhood Superhero");
+        security.setBounds(190,140,180,25);
+        p1.add(security);
+        
+         // craeting label for Answer
+         
+        JLabel lblanswer = new JLabel("Answer");
+        lblanswer.setBounds(50,180,125,25);
+        lblanswer.setFont(new Font("Tahoma", Font.BOLD, 20));
+        p1.add(lblanswer);
+        
+        // text field for answer
+        
+        tfanswer = new JTextField();
+        tfanswer .setBounds(190, 180, 180, 25);
+      tfanswer .setBorder(BorderFactory.createEmptyBorder());  // remove border of text field
+        p1.add(tfanswer );
+        
+        // Now We Adding Buttoon
+        // create
+        
+        create = new JButton("Create");
+        create.setBackground(Color.WHITE);
+        create.setForeground(new Color(133, 193,233));
+        create.setFont(new Font("Tahoma",Font.BOLD,14));
+        create.setBounds(80,250,100,30);
+        create.addActionListener(this);
+        p1.add(create);
+        
+        // back
+        
+        back = new JButton("Back");
+        back.setBackground(Color.WHITE);
+        back.setForeground(new Color(133, 193,233));
+        back.setFont(new Font("Tahoma",Font.BOLD,14));
+        back.setBounds(250,250,100,30);
+        back.addActionListener(this);
+        p1.add(back);
+        
+        
+        // now we add image on right of panel
+        
+         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icons/signup.png"));
+        Image i2 = i1.getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT); // scaling the image in frame
+        ImageIcon i3 = new ImageIcon(i2);
+        JLabel image = new JLabel(i3);
+        image.setBounds(580, 100, 250, 250);
+        add(image);
+      
+        
+        setVisible(true);
+    }
+    
+    public void actionPerformed(ActionEvent ae){
+        
+        if(ae.getSource()== create){
+            String username = tfusername.getText();
+            String name = tfname.getText();
+            String password = tfpassword.getText();
+            String question = security.getSelectedItem();
+            String answer = tfanswer.getText();
+            
+            String query = "insert into account values('"+username+"', '"+name+"', '"+password+"', '"+question+"','"+answer+"' )";
+            
+            try{
+                Conn c = new Conn();  // connection class object to hit sql querry
+                
+                c.s.executeUpdate(query);
+                JOptionPane.showMessageDialog(null, "Account Created Sucessfully");
+                // when ok button click close current frame and open login page
+                setVisible(false);
+                new Login();
+                
+                
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            
+        }else if (ae.getSource()== back){
+            // if back button presss close current frame and open login frame
+            setVisible(false);
+            new Login();
+            
+        }
+        
+    }
+   
+        
+    
+    public static void main(String[]args){
+        
+        new Signup();  // signup class object
+        
+        
+    }
+}
